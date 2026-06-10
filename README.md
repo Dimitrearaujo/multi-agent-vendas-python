@@ -1,5 +1,7 @@
 # Multi-Agent Vendas Python
 
+![CI](https://github.com/Dimitrearaujo/multi-agent-vendas-python/actions/workflows/ci.yml/badge.svg)
+
 Sistema multi-agente para automacao do processo comercial: 5 agentes IA especializados que operam em sequencia, do diagnostico ao fechamento.
 
 ## Agentes
