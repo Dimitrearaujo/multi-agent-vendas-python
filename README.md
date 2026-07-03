@@ -121,7 +121,7 @@ Multi-agent system for automating the sales process: 5 specialized AI agents ope
 
 ## Flow
 
-`
+```
 New lead
     |
 diagnostico.py
@@ -140,22 +140,22 @@ orcamento.py
 analise_call.py <── meeting transcript
     |
 simulador.py <── pre-call training
-`
+```
 
 ## Installation
 
-`ash
+```bash
 git clone https://github.com/Dimitrearaujo/multi-agent-vendas-python
 cd multi-agent-vendas-python
 pip install -r requirements.txt
 
 cp .env.example .env
 # Edit .env with your Anthropic key
-`
+```
 
 ## Usage
 
-`ash
+```bash
 # Full interactive flow: diagnosis + BANT + proposal
 python orchestrator.py diagnostico
 
@@ -164,10 +164,47 @@ python orchestrator.py call meeting.txt
 
 # Objection training
 python orchestrator.py simulador "AI automation for clinics"
-`
+```
+
+## Individual agent usage
+
+```python
+from agents import diagnostico, qualificador, orcamento
+
+# Diagnosis
+history = [{"role": "user", "content": "I have a vet clinic with 3 employees"}]
+result = diagnostico.run(history)
+# {"question": "What's the biggest problem today?", "diagnosis": null}
+
+# BANT qualification
+bant = qualificador.qualificar(history)
+# {"score": 75, "recommendation": "qualified", ...}
+
+# Generate proposal
+proposal = orcamento.gerar(diagnosis_result, {"name": "Dr. Silva"})
+```
+
+## Structure
+
+```
+multi-agent-vendas-python/
+   agents/
+      diagnostico.py     # Questions + problem synthesis
+      qualificador.py    # BANT score
+      analise_call.py    # Meeting insights
+      orcamento.py       # Commercial proposal JSON
+      simulador.py       # Objection training
+   core/
+      llm.py             # Claude API wrapper
+   orchestrator.py       # Full interactive flow
+```
 
 ## License
 
 MIT
 
 </details>
+
+---
+
+[← Back to profile](https://github.com/Dimitrearaujo)
