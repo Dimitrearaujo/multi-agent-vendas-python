@@ -97,3 +97,77 @@ multi-agent-vendas-python/
 ## Licenca
 
 MIT
+
+---
+
+<details>
+<summary>🇺🇸 English</summary>
+
+# Multi-Agent Sales Python
+
+![CI](https://github.com/Dimitrearaujo/multi-agent-vendas-python/actions/workflows/ci.yml/badge.svg)
+
+Multi-agent system for automating the sales process: 5 specialized AI agents operating in sequence, from diagnosis to closing.
+
+## Agents
+
+| Agent | Mission |
+|---|---|
+| `diagnostico.py` | Identifies the biggest business problem via open-ended questions |
+| `qualificador.py` | BANT evaluation (Budget, Authority, Need, Timeline) with 0-100 score |
+| `analise_call.py` | Extracts insights from meeting transcripts |
+| `orcamento.py` | Generates a personalized commercial proposal based on diagnosis |
+| `simulador.py` | Objection training — AI prospect + coach that evaluates your responses |
+
+## Flow
+
+`
+New lead
+    |
+diagnostico.py
+(3-5 questions)
+    |
+qualificador.py
+(BANT score)
+    |
+score >= 60? ──NO──> nurture / disqualify
+    |
+  YES
+    |
+orcamento.py
+(JSON proposal)
+    |
+analise_call.py <── meeting transcript
+    |
+simulador.py <── pre-call training
+`
+
+## Installation
+
+`ash
+git clone https://github.com/Dimitrearaujo/multi-agent-vendas-python
+cd multi-agent-vendas-python
+pip install -r requirements.txt
+
+cp .env.example .env
+# Edit .env with your Anthropic key
+`
+
+## Usage
+
+`ash
+# Full interactive flow: diagnosis + BANT + proposal
+python orchestrator.py diagnostico
+
+# Analyze meeting transcript
+python orchestrator.py call meeting.txt
+
+# Objection training
+python orchestrator.py simulador "AI automation for clinics"
+`
+
+## License
+
+MIT
+
+</details>
